@@ -1,0 +1,26 @@
+env:
+  BUILDKITE_DOCKER_COMPOSE_FILE: docker-compose-buildkite.yml
+
+steps:
+  - command: echo "Finished building"
+    name: ":docker: Build"
+    plugins: &plugins
+      docker-compose#v2.5.1:
+        run: test
+        config: docker-compose-buildkite.yml
+    agents:
+      queue: studio
+
+  - wait
+
+  - command: yarn lint:style
+    name: ":stylelint: Stylelint"
+    plugins: *plugins
+    agents:
+      queue: studio
+
+  - command: yarn lint:js
+    name: ":eslint: ESLint"
+    plugins: *plugins
+    agents:
+      queue: studio

@@ -1,0 +1,28 @@
+$white: #fff;
+$black: #000;
+
+$colors: (
+  green: #00e3ba,
+  red: #f4182f,
+  orange: #eb910f,
+  blue: #5e8b86,
+  black: $black,
+  white: $white,
+);
+
+$theme-colors: (
+  primary: color(green),
+  secondary: color(red),
+  light: color(white),
+  dark: color(black),
+);
+
+$grays: (
+  // Overwrite these grays from 100-900,
+  // or add your own gray keys.
+  100: #a8a8a8,
+  200: #999,
+  700: #525252,
+  800: #303030,
+  900: #2a2a2a,
+);

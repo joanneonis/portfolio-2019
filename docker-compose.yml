@@ -1,0 +1,28 @@
+base:
+  build: .
+  volumes:
+    - './assets:/app/user/assets'
+    - './components:/app/user/components'
+    - './config:/app/user/config'
+    - './layouts:/app/user/layouts'
+    - './locales:/app/user/locales'
+    - './middleware:/app/user/middleware'
+    - './pages:/app/user/pages'
+    - './plugins:/app/user/plugins'
+    - './static:/app/user/static'
+    - './store:/app/user/store'
+    - './.env:/app/user/.env'
+    - './.eslintignore:/app/.eslintignore'
+    - './.eslintrc.yml:/app/.eslintrc.yml'
+    - './nuxt.config.js:/app/user/nuxt.config.js'
+    - './package.json:/app/user/package.json'
+    - './yarn.lock:/app/user/yarn.lock'
+  working_dir: /app/user
+web:
+  extends:
+    service: base
+  ports:
+    - '3000:3000'
+  environment:
+    PORT: 3000
+  command: 'bash -c ''yarn dev'''

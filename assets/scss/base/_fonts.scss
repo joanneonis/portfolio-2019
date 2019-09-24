@@ -1,0 +1,18 @@
+// single use
+@font-face {
+  font-family: 'Integral';
+  font-style: normal;
+  font-weight: bold;
+  src: url('.././fonts/IntegralCF-ExtraBold.woff2') format('woff2'), url('.././fonts/IntegralCF-ExtraBold.woff') format('woff');
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: 'Bison';
+  font-style: normal;
+  font-weight: bold;
+  src: url('.././fonts/bison-boldpersonaluse-webfont.woff2') format('woff2'), url('.././fonts/bison-boldpersonaluse-webfont.woff') format('woff');
+  font-display: fallback;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Cabin:400,400i,600&display=swap');
