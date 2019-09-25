@@ -1,0 +1,43 @@
+.button-link {
+  color: theme-color(primary);
+  text-transform: uppercase;
+  letter-spacing: .25em;
+
+  &--icon {
+    display: inline-flex;
+    align-items: baseline;
+
+    .icon {
+      width: auto;
+      height: .9em;
+      margin-left: rem(8px);
+
+      * { transition: fill 200ms ease-in-out; }
+    }
+  }
+
+  &--sm {
+    font-size: rem(14px);
+
+    .icon {
+      height: .8em;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    color: darken(theme-color(primary), 10%);
+
+    .icon * {
+      fill: darken(theme-color(primary), 10%);
+    }
+  }
+}
+
+.icon--target {
+  transition: transform .2s ease-in-out;
+
+  .button-link:hover & {
+    transform: translate3d(4px, -4px, 0);
+  }
+}

@@ -1,6 +1,7 @@
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 1em;
 }
 
 ::selection {
@@ -57,6 +58,8 @@ hr {
 }
 
 p {
+  max-width: 680px;
+  font-size: rem(14px);
   line-height: 1.8;
   letter-spacing: rem(1.41px);
 }

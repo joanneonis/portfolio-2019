@@ -1,20 +1,15 @@
 <template>
   <section>
-    <Header
-      :title="project.content.title"
-      :back-title="project.content.title_back"
-      :intro="project.content.intro"
-      :image="project.content.header"
-    />
+    <project-page :project-slug="project.slug" />
   </section>
 </template>
 
 <script>
-import Header from '~/components/Header';
+import ProjectPage from '~/pages/projects/_slug/index';
 
 export default {
   components: {
-    Header,
+    ProjectPage,
   },
 
   computed: {

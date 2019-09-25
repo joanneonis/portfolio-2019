@@ -21,7 +21,7 @@ module.exports = {
   css: config.css,
   plugins,
   modules,
-  build,
+  build, 
   generate,
   styleResources: config.styleResources,
   axios: {

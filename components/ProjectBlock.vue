@@ -1,0 +1,114 @@
+<template>
+  <article class="block section-inset-y">
+    <figure class="block__media">
+      <img
+        v-if="!video"
+        class="block__media__image"
+        :src="media"
+      >
+      <div
+        v-if="video"
+        ref="video"
+        class="video"
+      >
+        <video
+          :src="require(`~/assets/video/${video}.mp4`)"
+          autoplay
+          muted
+          playsinline
+          loop
+          class="video__media"
+        />
+      </div>
+
+      <figcaption class="block__media__caption">
+        <p>
+          {{ text }}
+        </p>
+        <a
+          v-if="link.url"
+          :href="link.url"
+          class="button-link button-link--sm button-link--icon"
+          target="_blank"
+        >
+          play
+          <icon-target class="icon icon--target" />
+        </a>
+      </figcaption>
+    </figure>
+  </article>
+</template>
+
+<script>
+import IconTarget from '@/assets/img/icons/icon-target.svg';
+
+export default {
+  components: {
+    IconTarget,
+  },
+
+  props: {
+    text: {
+      type: String,
+      required: true,
+    },
+    aspect: {
+      type: String,
+      required: true,
+    },
+    link: {
+      type: Object,
+      default: null,
+    },
+    media: {
+      type: String,
+      default: null,
+    },
+    video: {
+      type: String,
+      default: null,
+    },
+  },
+
+  mounted() {
+    if (this.aspect) {
+      this.$refs.video.style.paddingBottom = `${this.aspect}%`;
+    }
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.block__media {
+  &__caption {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-top: rem(15px);
+
+    p {
+      margin-top: rem(20px);
+    }
+  }
+}
+
+.col-md-6 .block__media__caption p {
+  max-width: rem(500px);
+}
+
+.video {
+  position: relative;
+  height: 0;
+  padding-top: 25px;
+  padding-bottom: 56.25%;
+
+  &__media {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+</style>

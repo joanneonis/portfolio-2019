@@ -3,12 +3,12 @@
     <span class="header__backtitle back-title">
       <span class="marquee">
         <span>
-          {{ backTitle }}
+          {{ backTitle }} &nbsp; &nbsp;
         </span>
       </span>
       <span class="marquee marquee--second">
         <span>
-          {{ backTitle }}
+          {{ backTitle }} &nbsp; &nbsp;
         </span>
       </span>
     </span>
@@ -27,6 +27,9 @@
           class="header__figure__img"
           :alt="title"
         >
+        <figcaption v-if="credits">
+          {{ credits }}
+        </figcaption>
       </figure>
     </div>
   </header>
@@ -38,6 +41,10 @@ export default {
     title: {
       type: String,
       required: true,
+    },
+    credits: {
+      type: String,
+      default: null,
     },
     backTitle: {
       type: String,
@@ -62,6 +69,9 @@ export default {
 }
 
 .header {
+  position: relative;
+  margin-bottom: -20vh;
+
   &__inner {
     display: flex;
     min-height: 100vh;
@@ -81,6 +91,10 @@ export default {
     max-width: rem(600px);
     flex-flow: column;
     justify-content: center;
+
+    p {
+      max-width: 480px;
+    }
   }
 }
 
@@ -93,34 +107,19 @@ export default {
 
   &__img {
     width: 100%;
-    height: 100vh;
-    object-fit: cover;
-  }
-}
-
-$marquee-animation-duration: 100s;
-
-.marquee {
-  position: absolute;
-  width: 100vw;
-  overflow: hidden;
-  white-space: nowrap;
-
-  span {
-    display: inline-block;
-    padding-left: 100%;
-    animation: marquee $marquee-animation-duration linear infinite;
-    will-change: transform;
-    animation-delay: -($marquee-animation-duration / 2);
+    height: 120vh;
+    object-fit: contain;
+    object-position: right;
   }
 
-  &--second span {
-    animation-delay: 0s;
+  figcaption {
+    position: absolute;
+    right: rem(50px);
+    bottom: 0;
+    font-size: rem(14px);
+    font-style: italic;
+    pointer-events: all;
+    opacity: .6;
   }
-}
-
-@keyframes marquee {
-  0% { transform: translate(0, 0); }
-  100% { transform: translate(-100%, 0); }
 }
 </style>
