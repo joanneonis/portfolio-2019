@@ -1,17 +1,9 @@
 <template>
   <header class="header">
-    <span class="header__backtitle back-title">
-      <span class="marquee">
-        <span>
-          {{ backTitle }} &nbsp; &nbsp;
-        </span>
-      </span>
-      <span class="marquee marquee--second">
-        <span>
-          {{ backTitle }} &nbsp; &nbsp;
-        </span>
-      </span>
-    </span>
+    <Marquee
+      :text="backTitle"
+      class="header__backtitle"
+    />
     <div class="header__inner container">
       <div class="header__content">
         <h1>
@@ -36,7 +28,13 @@
 </template>
 
 <script>
+import Marquee from '~/components/Marquee';
+
 export default {
+  components: {
+    Marquee,
+  },
+
   props: {
     title: {
       type: String,
@@ -71,6 +69,7 @@ export default {
 .header {
   position: relative;
   margin-bottom: -20vh;
+  padding-top: rem(30px);
 
   &__inner {
     display: flex;

@@ -28,4 +28,7 @@ export const actions = {
       commit('setCacheVersion', res.data.space.version);
     });
   },
+  async nuxtServerInit({ commit }) {
+    commit('projects/fetchProjects');
+  },
 };

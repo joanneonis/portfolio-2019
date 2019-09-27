@@ -11,6 +11,7 @@
       width: auto;
       height: .9em;
       margin-left: rem(8px);
+      pointer-events: none;
 
       * { transition: fill 200ms ease-in-out; }
     }

@@ -16,7 +16,8 @@
           autoplay
           muted
           playsinline
-          loop
+          loop="true"
+          :controls="controls"
           class="video__media"
         />
       </div>
@@ -68,6 +69,10 @@ export default {
       type: String,
       default: null,
     },
+    controls: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   mounted() {
@@ -109,6 +114,10 @@ export default {
     width: 100%;
     height: 100%;
     object-fit: cover;
+
+    &:focus {
+      outline: none;
+    }
   }
 }
 </style>

@@ -10,6 +10,8 @@ body {
 
 a {
   display: inline-block;
+  position: relative;
+  z-index: 20;
   transition: $transition-base;
 
   &[class] {

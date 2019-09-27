@@ -19,26 +19,20 @@
           :media="project.content.intro_block[0].media"
           :link="project.content.intro_block[0].play_link"
           :video="project.content.intro_block[0].local_video"
-          :aspect="project.content.intro_block[0].custom_video_aspect"
+          :aspect="project.content.intro_block[0].custom_video_aspect || ''"
+          :controls="project.content.intro_block[0].video_controls"
         />
       </div>
-      <span class="section-backtitle back-title">
-        <span class="marquee marquee--reverse">
-          <span>
-            {{ project.content.blocks_title }} &nbsp;
-          </span>
-        </span>
-        <span class="marquee marquee--reverse marquee--second">
-          <span>
-            {{ project.content.blocks_title }} &nbsp;
-          </span>
-        </span>
-      </span>
+      <Marquee
+        :text="project.content.blocks_title"
+        class="section-backtitle"
+      />
       <div class="row blocks-sm section-inset-y">
         <div
           v-for="(block, index) in project.content.blocks"
           :key="index"
-          class="block-sm col-md-6"
+          class="block-sm"
+          :class="getClasses(block.grid_style)"
         >
           <project-block
             :title="block.title"
@@ -46,7 +40,7 @@
             :media="block.media"
             :link="block.play_link"
             :video="block.local_video"
-            :aspect="block.custom_video_aspect"
+            :aspect="block.custom_video_aspect || ''"
           />
         </div>
       </div>
@@ -63,12 +57,14 @@
 import Header from '~/components/Header';
 import ProjectBlock from '~/components/ProjectBlock';
 import ProjectLink from '~/components/ProjectLink';
+import Marquee from '~/components/Marquee';
 
 export default {
   components: {
     Header,
     ProjectBlock,
     ProjectLink,
+    Marquee,
   },
 
   props: {
@@ -85,6 +81,17 @@ export default {
       return projectBySlug(slug);
     },
   },
+
+  methods: {
+    getClasses(customClasses) {
+      if (customClasses) {
+        return customClasses;
+      }
+
+      return 'col-md-6';
+    },
+  },
+
   async fetch({ store }) {
     if (!store.getters['projects/isFetched']) {
       return store.dispatch('projects/fetchProjects');
