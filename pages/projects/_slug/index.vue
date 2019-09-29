@@ -82,6 +82,14 @@ export default {
     },
   },
 
+  async fetch({ store }) {
+    if (!store.getters['projects/isFetched']) {
+      return store.dispatch('projects/fetchProjects');
+    }
+
+    return true;
+  },
+
   methods: {
     getClasses(customClasses) {
       if (customClasses) {
@@ -91,25 +99,19 @@ export default {
       return 'col-md-6';
     },
   },
-
-  async fetch({ store }) {
-    if (!store.getters['projects/isFetched']) {
-      return store.dispatch('projects/fetchProjects');
-    }
-
-    return true;
-  },
 };
 </script>
 
 <style lang="scss">
 .blocks-sm {
-  .block-sm:nth-child(odd) .block {
-    padding-top: 0;
-  }
+  @include media-breakpoint-up(md) {
+    .block-sm:nth-child(odd) .block {
+      padding-top: 0;
+    }
 
-  .block-sm:nth-child(even) .block {
-    margin-top: 10vh;
+    .block-sm:nth-child(even) .block {
+      margin-top: 10vh;
+    }
   }
 }
 

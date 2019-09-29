@@ -1,11 +1,24 @@
 <template>
-  <div>
+  <div v-if="!isMobile">
     <div
       ref="cursor"
       class="cursor"
       :class="{ 'is--link' : hoverLink }"
     >
-      <div class="cursor__back" />
+      <div
+        class="cursor__back"
+        :class="{ 'has-icon' : !noVideo }"
+      />
+      <div class="cursor__icon">
+        <icon-play
+          class="icon"
+          :class="{ 'is-active' : videoPaused && !noVideo, 'is-passive' : !videoPaused || noVideo }"
+        />
+        <icon-pause
+          class="icon"
+          :class="{ 'is-active' : !videoPaused && !noVideo, 'is-passive' : videoPaused || noVideo }"
+        />
+      </div>
     </div>
     <div
       ref="pointer"
@@ -18,7 +31,18 @@
 </template>
 
 <script>
+import detect from 'browser-detect';
+import iconPlay from '~/assets/img/icons/icon-play.svg';
+import iconPause from '~/assets/img/icons/icon-pause.svg';
+
+const browser = detect();
+
 export default {
+  components: {
+    iconPlay,
+    iconPause,
+  },
+
   data() {
     return {
       mouseX: null,
@@ -29,27 +53,45 @@ export default {
       h: 40,
       hoverLink: false,
       currentTarget: null,
+      noVideo: true,
+      videoPaused: false,
+      isMobile: false,
     };
   },
 
   mounted() {
-    const ctx = this;
-    this.currentX = window.innerWidth / 2;
-    this.currentY = window.innerHeight / 2;
+    this.isMobile = browser.mobile;
 
-    document.body.addEventListener('mousemove', (e) => {
-      ctx.currentTarget = e.target;
-      ctx.mouseX = e.clientX;
-      ctx.mouseY = e.clientY;
-    });
-
-    // setInterval(ctx.updateCursor(), 1000 / 60);
-
-    setInterval(() => { ctx.updateCursor(); ctx.moveCursor(ctx.currentTarget); }, 1000 / 60);
+    if (!this.isMobile) {
+      this.init();
+    }
   },
 
   methods: {
+    init() {
+      const ctx = this;
+      this.currentX = window.innerWidth / 2;
+      this.currentY = window.innerHeight / 2;
+
+      document.body.addEventListener('mousemove', (e) => {
+        ctx.currentTarget = e.target;
+        ctx.mouseX = e.clientX;
+        ctx.mouseY = e.clientY;
+      });
+
+      window.onscroll = () => {
+        // console.log(e);
+        // document.body.dispatchEvent(new Event('mousemove'));
+      };
+
+      // setInterval(ctx.updateCursor(), 1000 / 60);
+
+      setInterval(() => { ctx.updateCursor(); ctx.moveCursor(ctx.currentTarget); }, 1000 / 60);
+    },
+
     moveCursor(target) {
+      if (!target) { return; }
+
       if (target.tagName === 'A') {
         this.hoverLink = true;
       } else {
@@ -57,7 +99,10 @@ export default {
       }
 
       if (target.tagName === 'VIDEO' && target.controls) {
-        console.log(target.paused);
+        this.videoPaused = target.paused;
+        this.noVideo = false;
+      } else {
+        this.noVideo = true;
       }
     },
 
@@ -103,7 +148,11 @@ $pointer-size: 6px;
     background-color: rgba(theme-color(dark), .3);
     border: 1px solid rgba(theme-color(light), .8);
     border-radius: rem($cursor-size);
-    transition: transform .2s ease-out;
+    transition: transform .2s ease;
+
+    &.has-icon {
+      transform: scale3d(1.5, 1.5, 1.5);
+    }
   }
 
   &.is--link {
@@ -135,5 +184,29 @@ $pointer-size: 6px;
 
 * {
   cursor: none;
+}
+
+.icon {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: rem(20px);
+  height: auto;
+  margin: auto;
+  opacity: 0;
+  transition: all .2s ease;
+  transform: scale3d(.3, .3, .3);
+  transform-origin: center;
+
+  &.is-active {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+
+  * {
+    fill: theme-color(light);
+  }
 }
 </style>

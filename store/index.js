@@ -6,6 +6,7 @@ const config = require('~/config/config');
 export const state = () => ({
   cacheVersion: '',
   defaultLocale: config.defaultLocale,
+  menuIsOpen: false,
 });
 
 export const mutations = {
@@ -19,6 +20,12 @@ export const mutations = {
     const sm = stateMutation;
 
     sm.locale = locale;
+  },
+
+  setMenuState(stateMutation, boolean) {
+    const sm = stateMutation;
+
+    sm.menuIsOpen = boolean;
   },
 };
 

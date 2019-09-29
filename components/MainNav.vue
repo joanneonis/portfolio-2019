@@ -1,37 +1,92 @@
 <template>
   <div>
     <div class="nav-bg" />
-    <nav class="main-nav">
-      <ul class="nav-list container list-unstyled">
-        <li class="nav-list__item">
-          <span class="nav-list__item__link">
-            Projects
-          </span>
-        </li>
-        <li
-          v-for="(project, i) in projects"
-          :key="i"
-          class="nav-list__item"
-          :class="{ 'is-active' : $route.path === `/${project.full_slug}` }"
-        >
-          <nuxt-link
-            :to="`/${project.full_slug}`"
-            class="nav-list__item__link"
+    <div
+      :class="{ 'is-mobile' : browser && browser.mobile }"
+      class="nav-toggle"
+      @click="toggleMenu()"
+    >
+      <hamburger :open="navOpen" />
+    </div>
+    <nav
+      class="main-nav"
+      :class="{ 'is-open' : navOpen }"
+    >
+      <div class="container main-nav__inner">
+        <figure class="user">
+          <a href="">
+            <img
+              src="~/assets/img/mijn-hoofd.png"
+              alt="Joanne Onis"
+            >
+          </a>
+        </figure>
+        <ul class="nav-list list-unstyled">
+          <li class="nav-list__item">
+            <span class="nav-list__item__link">
+              Projects
+            </span>
+          </li>
+          <li
+            v-for="(project, i) in projects"
+            :key="i"
+            class="nav-list__item"
+            :class="{ 'is-active' : $route.path === `/${project.full_slug}` }"
           >
-            {{ project.name }}
-          </nuxt-link>
-        </li>
-      </ul>
+            <nuxt-link
+              :to="`/${project.full_slug}`"
+              class="nav-list__item__link"
+            >
+              {{ project.name }}
+            </nuxt-link>
+          </li>
+        </ul>
+      </div>
     </nav>
   </div>
 </template>
 
 <script>
+import detect from 'browser-detect';
+import Hamburger from '~/components/Hamburger';
+
+// eslint-disable-next-line no-unused-vars
+const browser = detect();
+
 export default {
+  components: {
+    Hamburger,
+  },
+
   props: {
     projects: {
       type: Array,
       required: true,
+    },
+  },
+
+  data() {
+    return {
+      navOpen: false,
+      browser: null,
+    };
+  },
+
+  watch: {
+    $route: function closeOnRoute() {
+      this.$store.commit('setMenuState', false);
+      this.navOpen = this.$store.state.menuIsOpen;
+    },
+  },
+
+  mounted() {
+    this.browser = browser;
+  },
+
+  methods: {
+    toggleMenu() {
+      this.$store.commit('setMenuState', !this.$store.state.menuIsOpen);
+      this.navOpen = !this.navOpen;
     },
   },
 };
@@ -49,12 +104,54 @@ export default {
   position: fixed;
   right: 0;
   left: 0;
-  z-index: 999;
+  z-index: 99;
+
+  @include media-breakpoint-down(md) {
+    display: flex;
+    top: 0;
+    min-height: 100%;
+    flex-flow: row;
+    pointer-events: none;
+    background: theme-color(dark);
+    opacity: 0;
+
+    &.is-open {
+      pointer-events: auto;
+      opacity: 1;
+    }
+  }
+
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+
+    @include media-breakpoint-down(md) {
+      flex-flow: column;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+.user {
+  width: rem(50px);
+  margin-top: rem(35px);
+  margin-bottom: 0;
+
+  @include media-breakpoint-down(md) {
+    margin-bottom: rem(20px);
+  }
 }
 
 .nav-list {
   display: flex;
   justify-content: flex-end;
+
+  @include media-breakpoint-down(md) {
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+  }
 
   &__item {
     display: flex;
@@ -63,6 +160,10 @@ export default {
     font-size: .8em;
     text-transform: uppercase;
     letter-spacing: .16em;
+
+    @include media-breakpoint-down(md) {
+      margin: 0;
+    }
 
     &__link {
       position: relative;
@@ -80,6 +181,11 @@ export default {
         background: rgba(theme-color(primary), .2);
         transition: width .5s;
         will-change: width;
+
+        @include media-breakpoint-down(md) {
+          top: -2.4em;
+          left: 0;
+        }
       }
     }
 
@@ -91,9 +197,32 @@ export default {
       }
     }
   }
+
+  @include media-breakpoint-down(md) {
+    flex-wrap: wrap;
+
+    &__item__link {
+      padding: rem(10px) rem(20px);
+    }
+  }
 }
 
 .nuxt-link-active::after {
   width: 112%;
+
+  @include media-breakpoint-down(md) {
+    width: 100%;
+  }
+}
+
+.nav-toggle {
+  position: fixed;
+  top: rem(30px);
+  right: rem(20px);
+  z-index: 100;
+
+  @include media-breakpoint-up(lg) {
+    display: none;
+  }
 }
 </style>

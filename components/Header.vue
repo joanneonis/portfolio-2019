@@ -109,6 +109,11 @@ export default {
     height: 120vh;
     object-fit: contain;
     object-position: right;
+
+    @include media-breakpoint-down(lg) {
+      object-fit: cover;
+      opacity: .6;
+    }
   }
 
   figcaption {

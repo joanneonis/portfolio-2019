@@ -13,6 +13,14 @@ import MainNav from '~/components/MainNav';
 import CustomCursor from '~/components/CustomCursor';
 
 export default {
+  head() {
+    return {
+      bodyAttrs: {
+        class: this.$store.state.menuIsOpen ? 'overflow-hidden' : '',
+      },
+    };
+  },
+
   components: {
     MainNav,
     CustomCursor,

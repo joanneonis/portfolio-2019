@@ -30,7 +30,7 @@ export default {
 
   mounted() {
     // listen to "scroll" event
-    const ctx = this;
+    // const ctx = this;
 
     this.checkScrollSpeed = ((settings) => {
       // eslint-disable-next-line no-param-reassign
@@ -61,8 +61,9 @@ export default {
       };
     })();
 
+    // TODO
     window.onscroll = () => {
-      console.log(ctx.checkScrollSpeed());
+      // console.log(ctx.checkScrollSpeed());
     };
   },
   methods: {
