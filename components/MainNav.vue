@@ -24,7 +24,7 @@
         <ul class="nav-list list-unstyled">
           <li class="nav-list__item">
             <span class="nav-list__item__link">
-              Projects
+              Discover projects
             </span>
           </li>
           <li
@@ -95,6 +95,7 @@ export default {
 <style lang="scss" scoped>
 .nav-bg {
   position: fixed;
+  z-index: 10;
   width: 100%;
   min-height: rem(110px);
   background: linear-gradient(to bottom, theme-color(dark) 0%, rgba(theme-color(dark), 0) 100%);
@@ -161,6 +162,13 @@ export default {
     text-transform: uppercase;
     letter-spacing: .16em;
 
+    &:first-child span {
+      font-style: italic;
+      color: #d4d4d4;
+      text-transform: none;
+      letter-spacing: 1.4px;
+    }
+
     @include media-breakpoint-down(md) {
       margin: 0;
     }
@@ -168,6 +176,7 @@ export default {
     &__link {
       position: relative;
       padding: rem(50px) rem(2px) rem(30px) rem(2px);
+      color: theme-color(light);
 
       &::after {
         position: absolute;
@@ -178,7 +187,7 @@ export default {
         height: 1em;
         margin: rem(50px) rem(2px) rem(30px) rem(2px);
         content: '';
-        background: rgba(theme-color(primary), .2);
+        background: rgba(theme-color(light), .2);
         transition: width .5s;
         will-change: width;
 
@@ -186,6 +195,11 @@ export default {
           top: -2.4em;
           left: 0;
         }
+      }
+
+      &:hover,
+      &:focus {
+        color: darken(theme-color(light), 15%);
       }
     }
 

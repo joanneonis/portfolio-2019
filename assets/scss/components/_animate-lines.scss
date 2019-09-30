@@ -5,8 +5,53 @@
   }
 }
 
-.splitting .word {
+@keyframes fade-up-sm {
+  from {
+    opacity: 0;
+    transform: translateY(1em);
+  }
+}
+
+@keyframes letter-spacing {
+  from {
+    letter-spacing: .15em;
+    opacity: 0;
+  }
+}
+
+@keyframes letter-opacity {
+  from {
+    opacity: 0;
+  }
+}
+
+.splitting.animate--lines .word {
   display: inline-block;
-  animation: fade-up 1s cubic-bezier(.5, 0, .5, 1) both;
-  animation-delay: calc(60ms * var(--line-index));
+  animation: fade-up .75s ease both;
+  animation-delay: calc(.2s + (60ms * var(--line-index)));
+}
+
+.splitting.animate--spacing {
+  .word {
+    animation: letter-spacing 1s cubic-bezier(.5, 0, .5, 1) both;
+    animation-delay: calc(60ms * var(--word-index));
+  }
+
+  .char {
+    animation: letter-opacity 1s cubic-bezier(.5, 0, .5, 1) both;
+    animation-delay: calc(60ms * var(--word-index));
+  }
+}
+
+.splitting.animate--chars {
+  .word {
+    display: inline-block;
+    overflow: hidden;
+  }
+
+  .char {
+    display: inline-block;
+    animation: fade-up-sm .5s ease both;
+    animation-delay: calc(20ms * var(--char-index));
+  }
 }

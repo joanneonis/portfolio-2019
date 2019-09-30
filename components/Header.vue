@@ -6,10 +6,16 @@
     />
     <div class="header__inner container">
       <div class="header__content">
-        <h1>
+        <h1
+          v-split-lines="'chars'"
+          class="animate--chars"
+        >
           {{ title }}
         </h1>
-        <p v-split-lines="'lines'">
+        <p
+          v-split-lines
+          class="animate--lines"
+        >
           {{ intro }}
         </p>
       </div>

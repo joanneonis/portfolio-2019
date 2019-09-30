@@ -9,7 +9,7 @@ Vue.directive('split-lines', {
 
     Splitting({
       target: el,
-      by: 'lines',
+      by: setting,
       whitespace: false,
     });
   },
