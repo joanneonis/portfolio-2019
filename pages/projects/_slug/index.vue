@@ -148,8 +148,8 @@ export default {
 // SCROLL ANIMATIONS
 .block {
   opacity: 0;
-  transition: all .4s ease;
-  transform: translateY(100px);
+  transition: all .8s ease;
+  transform: translateY(80px);
 
   &.is-active {
     opacity: 1;
