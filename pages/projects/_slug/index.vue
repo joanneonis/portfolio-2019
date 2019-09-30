@@ -13,6 +13,7 @@
         class="row"
       >
         <project-block
+          v-waypoint="{ active: true, callback: onWaypoint, options: intersectionOptions }"
           class="offset-md-2 col-md-8"
           :title="project.content.intro_block[0].title"
           :text="project.content.intro_block[0].text"
@@ -35,6 +36,7 @@
           :class="getClasses(block.grid_style)"
         >
           <project-block
+            v-waypoint="{ active: true, callback: onWaypoint, options: intersectionOptions }"
             :title="block.title"
             :text="block.text"
             :media="block.media"
@@ -74,6 +76,16 @@ export default {
     },
   },
 
+  data() {
+    return {
+      intersectionOptions: {
+        root: null,
+        rootMargin: '0px 0px 0px 0px',
+        thresholds: [0.5],
+      },
+    };
+  },
+
   computed: {
     project() {
       const projectBySlug = this.$store.getters['projects/projectBySlug'];
@@ -97,6 +109,14 @@ export default {
       }
 
       return 'col-md-6';
+    },
+
+    onWaypoint({ el, going }) {
+      if (going === 'in') {
+        el.classList.add('is-active');
+      } else {
+        el.classList.remove('is-active');
+      }
     },
   },
 };
@@ -123,5 +143,17 @@ export default {
   margin-top: calc(-10vh - #{rem($section-max-value)});
   overflow: hidden;
   pointer-events: none;
+}
+
+// SCROLL ANIMATIONS
+.block {
+  opacity: 0;
+  transition: all .4s ease;
+  transform: translateY(100px);
+
+  &.is-active {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>
