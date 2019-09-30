@@ -54,7 +54,10 @@
 </template>
 
 <script>
+import detect from 'browser-detect';
 import IconLinkedin from '~/assets/img/icons/icon-linkedin.svg';
+
+const browser = detect();
 
 export default {
   components: {
@@ -63,17 +66,26 @@ export default {
 
   data() {
     return {
-      isOpen: false,
+      isOpen: this.$store.state.modalIsOpen,
+      isMobile: false,
     };
+  },
+
+  mounted() {
+    this.isMobile = browser.mobile;
   },
 
   methods: {
     toggleState() {
+      if (this.isMobile) return;
+
       this.isOpen = !this.isOpen;
       this.$store.commit('setModalState', !this.$store.state.modalIsOpen);
     },
 
     close() {
+      if (this.isMobile) return;
+
       this.isOpen = false;
       this.$store.commit('setModalState', false);
     },
