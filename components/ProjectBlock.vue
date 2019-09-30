@@ -4,7 +4,7 @@
       <img
         v-if="!video"
         class="block__media__image"
-        :src="media"
+        :src="media | transformImage('1200x0')"
       >
       <div
         v-if="video"

@@ -14,11 +14,21 @@
         </p>
       </div>
       <figure class="header__figure">
-        <img
-          :src="image"
-          class="header__figure__img"
-          :alt="title"
-        >
+        <picture>
+          <source
+            media="(min-width: 900px)"
+            :srcset="image | transformImage('1600x0')"
+          >
+          <source
+            media="(min-width: 600px)"
+            :srcset="image | transformImage('900x0')"
+          >
+          <img
+            :src="image | transformImage('600x0')"
+            class="header__figure__img"
+            :alt="title"
+          >
+        </picture>
         <figcaption v-if="credits">
           {{ credits }}
         </figcaption>
@@ -107,11 +117,10 @@ export default {
   &__img {
     width: 100%;
     height: 120vh;
-    object-fit: contain;
+    object-fit: cover;
     object-position: right;
 
     @include media-breakpoint-down(lg) {
-      object-fit: cover;
       opacity: .6;
     }
   }
