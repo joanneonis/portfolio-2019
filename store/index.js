@@ -7,6 +7,7 @@ export const state = () => ({
   cacheVersion: '',
   defaultLocale: config.defaultLocale,
   menuIsOpen: false,
+  modalIsOpen: false,
 });
 
 export const mutations = {
@@ -26,6 +27,12 @@ export const mutations = {
     const sm = stateMutation;
 
     sm.menuIsOpen = boolean;
+  },
+
+  setModalState(stateMutation, boolean) {
+    const sm = stateMutation;
+
+    sm.modalIsOpen = boolean;
   },
 };
 

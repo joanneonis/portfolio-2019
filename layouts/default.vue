@@ -1,7 +1,7 @@
 <template>
   <div>
     <main-nav :projects="projects" />
-    <main>
+    <main :class="{ 'has-modal' : this.$store.state.modalIsOpen }">
       <transition
         name="fade"
         mode="out-in"
@@ -50,5 +50,14 @@ export default {
 .fade-enter,
 .fade-leave-active {
   opacity: 0;
+}
+
+main {
+  opacity: 1;
+  transition: .5s;
+
+  &.has-modal {
+    opacity: .2;
+  }
 }
 </style>

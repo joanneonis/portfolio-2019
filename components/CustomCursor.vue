@@ -92,7 +92,7 @@ export default {
     moveCursor(target) {
       if (!target) { return; }
 
-      if (target.tagName === 'A') {
+      if (target.tagName === 'A' || target.hasAttribute('data-target')) {
         this.hoverLink = true;
       } else {
         this.hoverLink = false;
@@ -136,6 +136,7 @@ $pointer-size: 6px;
 %container {
   position: fixed;
   top: 0;
+  z-index: 999;
   pointer-events: none;
 }
 
@@ -176,8 +177,10 @@ $pointer-size: 6px;
   &.is--link {
     .cursor-pointer__inner {
       z-index: 5;
-      background-color: theme-color(light);
-      transform: scale3d(5, 5, 5);
+      // background-color: theme-color(light);
+      background-color: transparent;
+      transform: scale3d(3, 3, 3);
+      backdrop-filter: invert(90%);
     }
   }
 }
@@ -186,7 +189,7 @@ $pointer-size: 6px;
   cursor: none;
 }
 
-.icon {
+.cursor__icon .icon {
   position: fixed;
   top: 0;
   right: 0;

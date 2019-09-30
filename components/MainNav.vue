@@ -13,14 +13,7 @@
       :class="{ 'is-open' : navOpen }"
     >
       <div class="container main-nav__inner">
-        <figure class="user">
-          <a href="">
-            <img
-              src="~/assets/img/mijn-hoofd.png"
-              alt="Joanne Onis"
-            >
-          </a>
-        </figure>
+        <profile-card />
         <ul class="nav-list list-unstyled">
           <li class="nav-list__item">
             <span class="nav-list__item__link">
@@ -49,6 +42,7 @@
 <script>
 import detect from 'browser-detect';
 import Hamburger from '~/components/Hamburger';
+import ProfileCard from '~/components/ProfileCard';
 
 // eslint-disable-next-line no-unused-vars
 const browser = detect();
@@ -56,6 +50,7 @@ const browser = detect();
 export default {
   components: {
     Hamburger,
+    ProfileCard,
   },
 
   props: {
@@ -131,16 +126,6 @@ export default {
       align-items: center;
       justify-content: center;
     }
-  }
-}
-
-.user {
-  width: rem(50px);
-  margin-top: rem(35px);
-  margin-bottom: 0;
-
-  @include media-breakpoint-down(md) {
-    margin-bottom: rem(20px);
   }
 }
 

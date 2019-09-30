@@ -1,25 +1,21 @@
-$button-size: 50px;
-$button-padding-x: 30px;
+$button-size: 40px;
+$button-padding-x: 20px;
 
 .button {
-  display: inline-flex;
+  display: inline-block;
   position: relative;
   height: rem($button-size);
   align-items: center;
   padding-right: rem($button-padding-x);
   padding-left: rem($button-padding-x);
   overflow: hidden;
-  font-family: $headings-font-family;
-  text-transform: uppercase;
+  font-family: $font-family-sans-serif;
+  font-size: rem(12px);
+  line-height: rem($button-size);
+  text-transform: none;
+  letter-spacing: rem(2.1px);
   border-radius: rem($button-size / 2);
   transition: all 200ms ease-in-out;
-
-  @include media-breakpoint-up(md) {
-    height: rem($button-size * 1.2);
-    padding-right: rem($button-padding-x * 1.2);
-    padding-left: rem($button-padding-x * 1.2);
-    border-radius: rem(($button-size * 1.2) / 2);
-  }
 
   &[disabled] {
     pointer-events: none;
@@ -28,17 +24,17 @@ $button-padding-x: 30px;
   // Color variants
   @each $key, $value in $theme-colors {
     &--#{$key} {
-      color: theme-color(light);
+      color: theme-color(dark);
       background-color: theme-color(#{$key});
 
       &:hover,
       &:focus {
-        color: theme-color(light);
+        color: theme-color(dark);
         background-color: lighten(theme-color(#{$key}), 10%);
       }
 
       &[disabled] {
-        color: rgba(theme-color(light), .25);
+        color: rgba(theme-color(dark), .25);
         background-color: rgba(gray(900), .75);
       }
     }
