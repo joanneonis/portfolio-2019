@@ -9,7 +9,7 @@
         <h1>
           {{ title }}
         </h1>
-        <p>
+        <p v-split-lines="'lines'">
           {{ intro }}
         </p>
       </div>

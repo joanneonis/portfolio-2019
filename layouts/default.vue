@@ -2,7 +2,12 @@
   <div>
     <main-nav :projects="projects" />
     <main>
-      <nuxt />
+      <transition
+        name="fade"
+        mode="out-in"
+      >
+        <nuxt />
+      </transition>
     </main>
     <custom-cursor />
   </div>
@@ -33,3 +38,17 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.fade-enter-active,
+.fade-leave-active {
+  transition-timing-function: ease;
+  transition-duration: .3s;
+  transition-property: opacity;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+}
+</style>
