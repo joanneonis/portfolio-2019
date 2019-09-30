@@ -34,6 +34,22 @@
             </nuxt-link>
           </li>
         </ul>
+        <div class="socials">
+          <a
+            href="/CV - Joanne Onis.pdf"
+            class="button button--primary"
+            target="_blank"
+          >
+            Curriculum vitae
+          </a>
+          <a
+            href="https://www.linkedin.com/in/joanneonis/"
+            class="button button--primary button--icon"
+            target="_blank"
+          >
+            <icon-linkedin class="icon" />
+          </a>
+        </div>
       </div>
     </nav>
   </div>
@@ -43,6 +59,7 @@
 import detect from 'browser-detect';
 import Hamburger from '~/components/Hamburger';
 import ProfileCard from '~/components/ProfileCard';
+import IconLinkedin from '~/assets/img/icons/icon-linkedin.svg';
 
 // eslint-disable-next-line no-unused-vars
 const browser = detect();
@@ -51,6 +68,7 @@ export default {
   components: {
     Hamburger,
     ProfileCard,
+    IconLinkedin,
   },
 
   props: {
@@ -110,6 +128,7 @@ export default {
     pointer-events: none;
     background: theme-color(dark);
     opacity: 0;
+    transition: opacity .2s ease;
 
     &.is-open {
       pointer-events: auto;
@@ -188,11 +207,13 @@ export default {
       }
     }
 
-    &:last-child {
-      margin-right: 0;
+    @include media-breakpoint-up(lg) {
+      &:last-child {
+        margin-right: 0;
 
-      .nav-list__item__link {
-        padding-right: 0;
+        .nav-list__item__link {
+          padding-right: 0;
+        }
       }
     }
   }
@@ -222,6 +243,44 @@ export default {
 
   @include media-breakpoint-up(lg) {
     display: none;
+  }
+}
+
+.socials {
+  margin-top: rem(40px);
+
+  @include media-breakpoint-up(lg) {
+    display: none;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .nav-list__item {
+    opacity: 0;
+    transition: none;
+    transform: translateY(.75em);
+
+    .is-open & {
+      opacity: 1;
+      transition: all .2s .2s;
+      transform: translateY(0);
+    }
+  }
+
+  @for $i from 1 through 10 {
+    .nav-list__item:nth-child(#{$i}) {
+      transition-delay: .2s + ($i * .1s);
+    }
+  }
+
+  .socials {
+    opacity: 0;
+    transition: none;
+
+    .is-open & {
+      opacity: 1;
+      transition: all .4s .8s;
+    }
   }
 }
 </style>

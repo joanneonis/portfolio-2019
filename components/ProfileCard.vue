@@ -107,6 +107,13 @@ export default {
 
   @include media-breakpoint-down(md) {
     margin-bottom: rem(20px);
+    opacity: 0;
+    transition: none;
+
+    .is-open & {
+      opacity: 1;
+      transition: opacity .5s;
+    }
   }
 }
 
