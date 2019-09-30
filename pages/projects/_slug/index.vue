@@ -28,6 +28,9 @@
         :text="project.content.blocks_title"
         class="section-backtitle"
       />
+      <!-- <div class="section-backtitle">
+        <marquee-canvas />
+      </div> -->
       <div class="row blocks-sm section-inset-y">
         <div
           v-for="(block, index) in project.content.blocks"
@@ -60,6 +63,7 @@ import Header from '~/components/Header';
 import ProjectBlock from '~/components/ProjectBlock';
 import ProjectLink from '~/components/ProjectLink';
 import Marquee from '~/components/Marquee';
+import MarqueeCanvas from '~/components/MarqueeCanvas';
 
 export default {
   components: {
@@ -67,6 +71,7 @@ export default {
     ProjectBlock,
     ProjectLink,
     Marquee,
+    MarqueeCanvas,
   },
 
   props: {
