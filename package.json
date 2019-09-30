@@ -33,6 +33,7 @@
     "nuxt-rfg-icon": "^0.6.3",
     "nuxt-svg-loader": "^1.0.1",
     "plyr": "^3.5.4",
+    "scrollama": "^2.1.2",
     "splitting": "^1.0.6",
     "storyblok-js-client": "^1.0.22",
     "vue-awesome-swiper": "^3.1.3",

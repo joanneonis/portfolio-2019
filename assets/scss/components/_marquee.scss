@@ -1,6 +1,17 @@
 $marquee-animation-duration: 100s;
 
+%text-styles {
+  font-family: $headings-secondary-font-family;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-color: #fff;
+  -webkit-text-stroke-width: .1rem;
+  font-size: 45vh;
+  opacity: .12;
+}
+
 .marquee {
+  @extend %text-styles;
+
   position: absolute;
   width: 100vw;
   overflow: hidden;

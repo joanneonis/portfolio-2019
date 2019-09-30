@@ -78,12 +78,3 @@ p {
     max-width: map-get($container-max-widths, xl);
   }
 }
-
-.back-title {
-  font-family: $headings-secondary-font-family;
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke-color: #fff;
-  -webkit-text-stroke-width: .1rem;
-  font-size: 50vh;
-  opacity: .25;
-}
