@@ -5,7 +5,7 @@
       @click="toggleState()"
     >
       <img
-        src="~/assets/img/mijn-hoofd.png"
+        src="~/assets/img/Joanne Onis.png"
         alt="Joanne Onis"
         data-target
       >

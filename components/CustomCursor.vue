@@ -56,6 +56,9 @@ export default {
       noVideo: true,
       videoPaused: false,
       isMobile: false,
+      prevScroll: 0,
+      scrollDirection: null,
+      scrollFalse: false,
     };
   },
 
@@ -77,19 +80,24 @@ export default {
         ctx.currentTarget = e.target;
         ctx.mouseX = e.clientX;
         ctx.mouseY = e.clientY;
+
+        ctx.scrollFalse = false;
       });
 
       window.onscroll = () => {
-        // console.log(e);
         // document.body.dispatchEvent(new Event('mousemove'));
+
+        ctx.scrollDirection = ctx.prevScroll > window.pageYOffset;
+        ctx.prevScroll = window.pageYOffset;
+
+        ctx.moveCursor(ctx.currentTarget, true);
+        ctx.updateCursor();
       };
 
-      // setInterval(ctx.updateCursor(), 1000 / 60);
-
-      setInterval(() => { ctx.updateCursor(); ctx.moveCursor(ctx.currentTarget); }, 1000 / 60);
+      setInterval(() => { ctx.updateCursor(); ctx.moveCursor(ctx.currentTarget, false); }, 1000 / 60);
     },
 
-    moveCursor(target) {
+    moveCursor(target, scrollTriggered) {
       if (!target) { return; }
 
       if (target.tagName === 'A' || target.hasAttribute('data-target')) {
@@ -98,11 +106,40 @@ export default {
         this.hoverLink = false;
       }
 
-      if (target.tagName === 'VIDEO' && target.controls) {
+      this.checkVideoStuff(target, scrollTriggered);
+    },
+
+    // TODO mayor refactor!
+    checkVideoStuff(target, scrollTriggered) {
+      const videoControls = target.tagName === 'VIDEO' && target.controls;
+
+      if (videoControls && !scrollTriggered && !this.scrollFalse) {
+        const videoDimentions = target.getBoundingClientRect();
+        const controlTop = videoDimentions.top + ((videoDimentions.height / 100) * 80);
+
+        if (this.mouseY > controlTop) {
+          this.noVideo = true;
+        } else {
+          this.noVideo = false;
+        }
+
         this.videoPaused = target.paused;
-        this.noVideo = false;
-      } else {
+      } else if (!scrollTriggered && !videoControls && !this.scrollFalse) {
         this.noVideo = true;
+      }
+
+      if (videoControls && scrollTriggered) {
+        const videoDimentions = target.getBoundingClientRect();
+        this.scrollFalse = true;
+
+        if (
+          (this.mouseY < (videoDimentions.top + videoDimentions.height))
+          && (this.mouseY > videoDimentions.top)
+        ) {
+          this.noVideo = false;
+        } else {
+          this.noVideo = true;
+        }
       }
     },
 

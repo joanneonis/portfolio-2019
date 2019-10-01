@@ -154,8 +154,8 @@ export default {
   },
 
   watch: {
-    scrollSpeed: function toggleState(e) {
-      console.log('scrollspeed updated', e);
+    scrollSpeed: function toggleState() {
+      // console.log('scrollspeed updated', e);
     },
   },
 
