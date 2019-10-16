@@ -43,7 +43,7 @@ export default {
 .fade-enter-active,
 .fade-leave-active {
   transition-timing-function: ease;
-  transition-duration: .5s;
+  transition-duration: .7s;
   transition-property: opacity;
 }
 
@@ -54,7 +54,7 @@ export default {
 
 main {
   opacity: 1;
-  transition: .5s;
+  transition: .7s;
 
   &.has-modal {
     opacity: .2;

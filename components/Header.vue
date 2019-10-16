@@ -18,6 +18,9 @@
         >
           {{ intro }}
         </p>
+        <div class="project-info mt-4">
+          <spec-list />
+        </div>
       </div>
       <figure class="header__figure">
         <picture>
@@ -45,10 +48,12 @@
 
 <script>
 import Marquee from '~/components/Marquee';
+import SpecList from '~/components/SpecList';
 
 export default {
   components: {
     Marquee,
+    SpecList,
   },
 
   props: {
@@ -108,6 +113,10 @@ export default {
     justify-content: center;
 
     p {
+      max-width: 480px;
+    }
+
+    .project-info {
       max-width: 480px;
     }
   }
