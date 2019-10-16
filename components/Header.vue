@@ -78,6 +78,18 @@ export default {
       required: true,
     },
   },
+
+  mounted() {
+    window.addEventListener('scroll', () => {
+      const scrollPos = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+      const header = document.querySelector('.header');
+      const headerBackground = document.querySelector('.header__figure');
+      const { height } = header.getBoundingClientRect();
+      const opacity = 1 - (scrollPos / height * 2);
+
+      headerBackground.style.opacity = opacity > 0 ? opacity : 0;
+    });
+  },
 };
 </script>
 

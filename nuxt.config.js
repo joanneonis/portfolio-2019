@@ -21,7 +21,7 @@ module.exports = {
   css: config.css,
   plugins,
   modules,
-  build, 
+  build,
   generate,
   styleResources: config.styleResources,
   axios: {
@@ -29,5 +29,6 @@ module.exports = {
   },
   router: {
     middleware: 'setCacheVersion',
+    scrollBehavior: () => ({ x: 0, y: 0 }),
   },
 };

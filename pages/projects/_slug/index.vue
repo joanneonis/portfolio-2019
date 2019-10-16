@@ -66,6 +66,8 @@ import Marquee from '~/components/Marquee';
 import MarqueeCanvas from '~/components/MarqueeCanvas';
 
 export default {
+  scrollToTop: true,
+
   components: {
     Header,
     ProjectBlock,

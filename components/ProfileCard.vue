@@ -19,14 +19,10 @@
           <span>
             Joanne Onis
           </span>
-          <small>
-            Frontend developer
-          </small>
         </h2>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Maecenas non dolor facilisis, tincidunt lectus vel, ultrices arcu.
-          Maecenas non dolor facilisis, tincidunt lectus vel, ultrices arcu.
+          CMD student, creative developer, interactie fan etc.. <br><br>
+          Wil je meer weten? Check mijn CV of Linkedin.
         </p>
         <a
           href="/CV - Joanne Onis.pdf"
