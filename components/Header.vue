@@ -19,7 +19,10 @@
           {{ intro }}
         </p>
         <div class="project-info mt-4">
-          <spec-list />
+          <spec-list
+            v-if="specs"
+            :specs="specs[0]"
+          />
         </div>
       </div>
       <figure class="header__figure">
@@ -77,6 +80,10 @@ export default {
       type: String,
       required: true,
     },
+    specs: {
+      type: Object,
+      default: null,
+    },
   },
 
   mounted() {
@@ -125,10 +132,6 @@ export default {
     justify-content: center;
 
     p {
-      max-width: 480px;
-    }
-
-    .project-info {
       max-width: 480px;
     }
   }

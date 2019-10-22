@@ -2,22 +2,41 @@
   <ul class="list-unstyled spec-list">
     <li>
       <strong>
-        Company
+        {{ specs.locatie }}
       </strong>
       <p>
-        Nerds & Company
+        {{ specs.Client }}
       </p>
     </li>
     <li>
       <strong>
-        Work
+        Verantwoordelijkheden
       </strong>
       <p>
-        Frontend development
+        {{ specs.disciplines }}
+      </p>
+    </li>
+    <li v-if="specs.skills">
+      <strong>
+        Skills & tools
+      </strong>
+      <p>
+        {{ specs.skills }}
       </p>
     </li>
   </ul>
 </template>
+
+<script>
+export default {
+  props: {
+    specs: {
+      type: Object,
+      default: null,
+    },
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 @keyframes fade-up {

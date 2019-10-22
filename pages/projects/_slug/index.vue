@@ -6,6 +6,7 @@
       :intro="project.content.intro"
       :image="project.content.header"
       :credits="project.content.header_credits"
+      :specs="project.content.specs"
     />
     <section class="container">
       <div
@@ -50,6 +51,11 @@
         </div>
       </div>
     </section>
+    <awards
+      v-if="project.content.awards"
+      v-waypoint="{ active: true, callback: onWaypoint, options: intersectionOptions }"
+      :awards="project.content.awards"
+    />
     <project-link
       v-if="project.content.project_link.url"
       :link="project.content.project_link"
@@ -64,6 +70,7 @@ import ProjectBlock from '~/components/ProjectBlock';
 import ProjectLink from '~/components/ProjectLink';
 import Marquee from '~/components/Marquee';
 import MarqueeCanvas from '~/components/MarqueeCanvas';
+import Awards from '~/components/Awards';
 
 export default {
   scrollToTop: true,
@@ -74,6 +81,7 @@ export default {
     ProjectLink,
     Marquee,
     MarqueeCanvas,
+    Awards,
   },
 
   props: {
