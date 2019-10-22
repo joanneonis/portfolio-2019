@@ -1,11 +1,12 @@
 <template>
   <article class="block section-inset-y">
     <figure class="block__media">
-      <img
+      <v-lazy-image
         v-if="!video"
         class="block__media__image"
         :src="media | transformImage('1200x0')"
-      >
+        :src-placeholder="media | transformImage('70x0')"
+      />
       <div
         v-if="video"
         ref="video"
@@ -94,6 +95,11 @@ export default {
     p {
       margin-top: rem(20px);
     }
+  }
+
+  &__image {
+    width: 100%;
+    height: auto;
   }
 }
 

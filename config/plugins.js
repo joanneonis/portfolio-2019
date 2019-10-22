@@ -7,4 +7,5 @@ module.exports = [
   'plugins/filters/moment.js',
   'plugins/directives/split.js',
   'plugins/waypoint.js',
+  'plugins/lazy-images.js',
 ];

@@ -26,7 +26,7 @@
         </div>
       </div>
       <figure class="header__figure">
-        <picture>
+        <!-- <picture>
           <source
             media="(min-width: 900px)"
             :srcset="image | transformImage('1600x0')"
@@ -40,7 +40,12 @@
             class="header__figure__img"
             :alt="title"
           >
-        </picture>
+        </!-->
+        <v-lazy-image
+          class="header__figure__img"
+          :src="image | transformImage('1600x0')"
+          :src-placeholder="image | transformImage('70x0')"
+        />
         <figcaption v-if="credits">
           {{ credits }}
         </figcaption>
@@ -145,7 +150,7 @@ export default {
   height: 100vh;
 
   &__img {
-    width: 100%;
+    max-width: none;
     height: 120vh;
     object-fit: cover;
     object-position: right;
