@@ -186,7 +186,7 @@ $pointer-size: 6px;
     background-color: rgba(theme-color(dark), .3);
     border: 1px solid rgba(theme-color(light), .8);
     border-radius: rem($cursor-size);
-    transition: transform .2s ease;
+    transition: transform .3s cubic-bezier(.39, .04, .54, 2);
 
     &.has-icon {
       transform: scale3d(1.5, 1.5, 1.5);
@@ -242,7 +242,7 @@ $pointer-size: 6px;
 
   &.is-active {
     opacity: 1;
-    transform: scale3d(1, 1, 1);
+    transform: scale3d(.8, .8, 1);
   }
 
   * {

@@ -29,6 +29,7 @@
             <nuxt-link
               :to="`/${project.full_slug}`"
               class="nav-list__item__link"
+              :class="{ 'nuxt-link-active' : $route.fullPath === '/' && i === 0 }"
             >
               {{ project.name }}
             </nuxt-link>

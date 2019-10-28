@@ -1,8 +1,71 @@
 .v-lazy-image {
   filter: blur(10px);
-  transition: filter .7s;
+  transition: filter .1s;
 }
 
 .v-lazy-image-loaded {
   filter: blur(0);
+}
+
+// @keyframes loadBar {
+//   0% {
+//     transform: scale3d(0, 1, 1) translate(150px, 0);
+//   }
+
+//   25% {
+//     transform: scale3d(.5, 1, 1) translate(25%, 0);
+//   }
+
+//   75% {
+//     transform: scale3d(.5, 1, 1) translate(75%, 0);
+//   }
+
+//   100% {
+//     transform: scale3d(0, 1, 1) translate(-150px, 0);
+//   }
+// }
+
+@keyframes loadBar {
+  0% {
+    left: 0;
+    width: 0;
+  }
+
+  25% {
+    left: 25%;
+    width: 25%;
+  }
+
+  50% {
+    left: 100%;
+    width: 0;
+  }
+
+  75% {
+    left: 25%;
+    width: 25%;
+  }
+
+  100% {
+    left: 0;
+    width: 0;
+  }
+}
+
+.lazy-loadbar {
+  width: rem(90px);
+  height: rem(3px);
+  background-color: rgba(theme-color(light), .23);
+
+  &::after {
+    display: block;
+    position: relative;
+    width: 0;
+    height: rem(3px);
+    content: '';
+    background-color: theme-color(light);
+    transform: scale3d(.5, 1, 1) translate(50%, 0);
+    animation: loadBar 3s ease;
+    animation-iteration-count: infinite;
+  }
 }

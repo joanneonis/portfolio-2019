@@ -8,7 +8,7 @@
         {{ specs.Client }}
       </p>
     </li>
-    <li>
+    <li v-if="specs.disciplines">
       <strong>
         Verantwoordelijkheden
       </strong>
@@ -67,8 +67,10 @@ export default {
 
     strong {
       margin-bottom: 2px;
+      font-size: 12px;
       font-weight: 900;
-      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      letter-spacing: 2.3px;
     }
 
     p {

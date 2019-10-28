@@ -2,7 +2,7 @@
   <div class="awards section-inset-y">
     <div class="container">
       <span>
-        Awarded for
+        Award<template v-if="awards.length > 1">s</template>
       </span>
 
       <figure

@@ -20,8 +20,8 @@
             Joanne Onis
           </span>
         </h2>
+        <!-- CMD student, Creative developer. <br><br> -->
         <p>
-          CMD student, creative developer, interactie fan etc.. <br><br>
           Wil je meer weten? Check mijn CV of Linkedin.
         </p>
         <a

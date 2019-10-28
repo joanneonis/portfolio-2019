@@ -10,6 +10,9 @@
           v-split-lines="'chars'"
           class="animate--chars"
         >
+          <small v-if="type">
+            {{ type[0] }}
+          </small>
           {{ title }}
         </h1>
         <p
@@ -20,7 +23,7 @@
         </p>
         <div class="project-info mt-4">
           <spec-list
-            v-if="specs"
+            v-if="specs && specs[0]"
             :specs="specs[0]"
           />
         </div>
@@ -45,7 +48,9 @@
           class="header__figure__img"
           :src="image | transformImage('1600x0')"
           :src-placeholder="image | transformImage('70x0')"
+          @load="loaded"
         />
+        <!-- <div class="lazy-loadbar" /> -->
         <figcaption v-if="credits">
           {{ credits }}
         </figcaption>
@@ -89,6 +94,10 @@ export default {
       type: Object,
       default: null,
     },
+    type: {
+      type: Array,
+      default: null,
+    },
   },
 
   mounted() {
@@ -101,6 +110,12 @@ export default {
 
       headerBackground.style.opacity = opacity > 0 ? opacity : 0;
     });
+  },
+
+  methods: {
+    loaded(e) {
+      console.log('loaded', e);
+    },
   },
 };
 </script>
@@ -169,5 +184,24 @@ export default {
     pointer-events: all;
     opacity: .6;
   }
+}
+
+.lazy-loadbar {
+  position: absolute;
+  top: 0;
+  right: 10vw;
+  bottom: 0;
+  margin: auto;
+}
+
+small {
+  display: block;
+  width: 100%;
+  font-family: $font-family-sans-serif;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 6.41px;
 }
 </style>

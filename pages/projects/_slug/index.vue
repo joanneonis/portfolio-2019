@@ -7,6 +7,7 @@
       :image="project.content.header"
       :credits="project.content.header_credits"
       :specs="project.content.specs"
+      :type="project.content.type"
     />
     <section class="container">
       <div
@@ -52,7 +53,7 @@
       </div>
     </section>
     <awards
-      v-if="project.content.awards"
+      v-if="project.content.awards && project.content.awards.length > 0"
       v-waypoint="{ active: true, callback: onWaypoint, options: intersectionOptions }"
       :awards="project.content.awards"
     />
