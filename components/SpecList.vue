@@ -49,6 +49,10 @@ export default {
 .spec-list {
   display: flex;
 
+  @include media-breakpoint-down(md) {
+    flex-wrap: wrap;
+  }
+
   li {
     display: flex;
     flex-flow: column;
@@ -63,6 +67,11 @@ export default {
 
     &:first-child {
       padding-left: 0;
+    }
+
+    @include media-breakpoint-down(md) {
+      width: 100%;
+      padding: 0 0 0;
     }
 
     strong {

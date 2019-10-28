@@ -263,14 +263,14 @@ export default {
 
     .is-open & {
       opacity: 1;
-      transition: all .2s .2s;
+      transition: all .15s .2s;
       transform: translateY(0);
     }
   }
 
   @for $i from 1 through 10 {
     .nav-list__item:nth-child(#{$i}) {
-      transition-delay: .2s + ($i * .1s);
+      transition-delay: .15s + ($i * .05s);
     }
   }
 
@@ -280,7 +280,7 @@ export default {
 
     .is-open & {
       opacity: 1;
-      transition: all .4s .8s;
+      transition: all .6s .5s;
     }
   }
 }
