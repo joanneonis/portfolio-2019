@@ -30,4 +30,7 @@ module.exports = [
   ],
 
   '@nuxtjs/style-resources',
+  ['@nuxtjs/google-analytics', {
+    id: 'UA-45807748-1',
+  }],
 ];
