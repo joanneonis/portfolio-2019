@@ -2,13 +2,13 @@
   <article class="block section-inset-y">
     <figure class="block__media">
       <v-lazy-image
-        v-if="!video"
+        v-if="!video || !youtube"
         class="block__media__image"
         :src="media | transformImage('1200x0')"
         :src-placeholder="media | transformImage('70x0')"
       />
       <div
-        v-if="video"
+        v-if="video && !youtube"
         ref="video"
         class="video"
       >
@@ -22,6 +22,15 @@
           class="video__media"
         />
       </div>
+      <div
+        v-if="youtube"
+        class="video-container"
+      >
+        <youtube
+          ref="youtube"
+          :video-id="youtube"
+        />
+        </div>
 
       <figcaption class="block__media__caption">
         <p>
@@ -50,6 +59,10 @@ export default {
   },
 
   props: {
+    youtube: {
+      type: String,
+      default: null,
+    },
     text: {
       type: String,
       required: true,
@@ -84,7 +97,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .block__media {
   &__caption {
     display: flex;
@@ -124,6 +137,22 @@ export default {
     &:focus {
       outline: none;
     }
+  }
+}
+
+.video-container {
+  position: relative;
+  height: 0;
+  padding-top: 30px;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 }
 </style>

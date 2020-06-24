@@ -17,6 +17,7 @@
         <project-block
           v-waypoint="{ active: true, callback: onWaypoint, options: intersectionOptions }"
           class="offset-md-2 col-md-8"
+          :youtube="project.content.intro_block[0].youtube_id"
           :title="project.content.intro_block[0].title"
           :text="project.content.intro_block[0].text"
           :media="project.content.intro_block[0].media"
