@@ -2,7 +2,7 @@
   <article class="block section-inset-y">
     <figure class="block__media">
       <v-lazy-image
-        v-if="!video || !youtube"
+        v-if="!video && !youtube"
         class="block__media__image"
         :src="media | transformImage('1200x0')"
         :src-placeholder="media | transformImage('70x0')"
