@@ -27,7 +27,7 @@
     "bootstrap": "^4.3.1",
     "browser-detect": "^0.2.28",
     "cross-env": "^5.2.0",
-    "lazysizes": "^5.1.2",
+    "lazysizes": "^5.2.1",
     "lottie-web": "^5.5.2",
     "nuxt": "^2.6.1",
     "nuxt-i18n": "^5.8.5",
